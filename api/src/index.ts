@@ -1,6 +1,7 @@
 import express, { Application } from "express";
 import morgan from "morgan";
 import Router from "./routes";
+import 'dotenv/config';
 
 const PORT = process.env.PORT || 8000;
 
