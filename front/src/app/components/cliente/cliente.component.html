@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center mb-5 w-100 mt-3" >
+  <form #clientForm="ngForm" class="px-4 pb-4 pt-3 shadow" style="width: 500px;" (ngSubmit)="edit ? updateClient(clientForm) : addClient(clientForm)">
+    <h1 class="mb-3">{{ edit ? 'Editar' : 'Crear' }} Cliente</h1>
+    <div class="d-flex flex-column gap-2">
+      <div class="d-flex flex-column ">
+        <label for="basicc-url" class="form-label" style="font-size: 12px;">Tipo de documento: </label>
+        <select class="form-select" aria-label="Default select example" name="NombreDocumento" #name="ngModel" [(ngModel)]="selectedClient.documentType" style="display: inline">
+          <option value="1" selected>Cedula</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <label for="basic-url" class="form-label" style="font-size: 12px;">Documento: </label>
+        <input name="Documento" #_id="ngModel" class="form-control w-100" [(ngModel)]="selectedClient.document" placeholder="Digite el documento">
+      </div>
+      <div class="input-group">
+        <label for="basic-url" class="form-label" style="font-size: 12px;">Nombres: </label>
+        <input type="text" name="Nombres" #name="ngModel" class="form-control w-100" [(ngModel)]="selectedClient.name" placeholder="Escriba su nombre">
+      </div>
+      <div class="input-group">
+        <label for="basicc-url" class="form-label" style="font-size: 12px;">Genero: </label>
+        <input type="text" name="Genero" #name="ngModel" class="form-control w-100" [(ngModel)]="selectedClient.genre" placeholder="Escriba su genero">
+      </div>
+      <p style="color: red; font-size: 12px">{{ errorMessage }}</p>
+      <div class="card-action">
+        <div class="d-flex gap-2 justify-content-center">
+          <button type="button" class="btn btn-light border rounded" style="margin-left: 2px;" (click)="resetForm(clientForm)">Limpiar</button>
+          <button type="submit" class="btn btn-primary rounded">{{edit ? 'Actualizar': 'Guardar'}}</button>
+          <button *ngIf="edit" type="button" class="btn btn-light rounded-circle" (click)="closeEdit(clientForm)">
+            <span class="mdi mdi-close"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="my-3">
+  <div *ngIf="alert.show" class="alert alert-primary" role="alert" [class]="alert.shape">
+    {{ alert.message }}
+  </div>
+</div>
+<ul class="d-flex flex-wrap gap-3" style="list-style: none">
+  <li *ngFor="let client of clients" class="shadow br-5 p-4 d-flex flex-column align-items-between" style="min-width: 300px; ">
+    <div>
+      <div class="d-flex justify-content-between">
+        <h3 style="width: 200px; word-break: break-word">{{ client.name }}</h3>
+        <p>{{ client.documentType }}. {{ client.document }}</p>
+      </div>
+      <p>{{ client.genre }}</p>
+    </div>
+    <div class="d-flex justify-content-end gap-2">
+      <button type="button" class="btn btn-primary rounded-circle" (click)="editClient(client)">
+        <span class="mdi mdi-pen"></span>
+      </button>
+      <button type="button" class="btn btn-danger rounded-circle" (click)="deleteClient(client.document, clientForm)">
+        <span class="mdi mdi-close"></span>
+      </button>
+    </div>
+  </li>
+</ul>
+
+

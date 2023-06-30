@@ -50,8 +50,8 @@ export class Connection {
 
         const { returnValue, recordset } = await request.execute(procedure);
         
-        if(returnValue == 1){
-          resolve(recordset);
+        if(returnValue === 0){
+            resolve(recordset);
         }
       } catch (error) {
         reject(new Error('No se pudo'));

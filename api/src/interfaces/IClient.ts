@@ -1,6 +1,6 @@
 export interface IClient {
-	name: string
-	genre: string
 	document: string
+	name: string
 	documentType: number
+	genre: string
 }
