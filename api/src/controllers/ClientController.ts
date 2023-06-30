@@ -8,7 +8,7 @@ export default class ClientController {
       
       const connection = new Connection();
 
-      const clients = connection.execute('Cliente_Get_List');
+      const clients = connection.execute('Cliente_Get_List'); 
       
       response.json({ status: 200, clients: clients });
 
